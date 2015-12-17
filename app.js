@@ -17,4 +17,6 @@ server.listen(3000, function() {
 
 if(process.env.REDIS_PORT_6379_TCP_PORT && process.env.REDIS_DATABASE){
   console.log('redis link ok.');
+}else{
+  console.log('redis not found.');
 }
