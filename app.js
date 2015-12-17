@@ -16,4 +16,4 @@ server.listen(3000, function() {
 });
 
 var redisDatabaseNumber=process.env.REDIS_DATABASE;
-console.log('>>>>>>'+redisDatabaseNumber);
+console.log(process.env);
