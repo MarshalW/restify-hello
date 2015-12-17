@@ -20,3 +20,9 @@ if(process.env.REDIS_PORT_6379_TCP_PORT && process.env.REDIS_DATABASE){
 }else{
   console.log('redis not found.');
 }
+
+if(process.env.MONGODBPORT27017TCPADDR){
+  console.log('mongodb link ok.');
+}else{
+  console.log('mongodb not found');
+}
