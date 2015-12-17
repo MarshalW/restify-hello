@@ -14,3 +14,6 @@ server.get('/hello/:name', respond);
 server.listen(3000, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
+
+var redisDatabaseNumber=process.env.REDIS_DATABASE;
+console.log('>>>>>>'+redisDatabaseNumber);
