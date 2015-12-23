@@ -26,3 +26,5 @@ if(process.env.MONGO_PORT_27017_TCP_ADDR){
 }else{
   console.log('mongodb not found');
 }
+
+throw new Error('heha');
