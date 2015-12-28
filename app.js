@@ -4,8 +4,13 @@ var fs = require('fs-extra');
 
 console.log("log: "+process.env.LOG_PATH);
 if(process.env.LOG_PATH){
-  fs.mkdirsSync(process.env.LOG_PATH+'/node');
-  winston.add(winston.transports.File, { filename: process.env.LOG_PATH+'/node/app.log'});
+  var logPath=process.env.LOG_PATH+'/node';
+  fs.mkdirsSync(logPath);
+  console.log('created log path: '+logPath);
+  
+  var logFilePath=logPath+'/app.log';
+  winston.add(winston.transports.File, { filename: logFilePath});
+  console.log('set log file path: '+logFilePath);
 }
 
 function respond(req, res, next) {
