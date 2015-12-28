@@ -4,7 +4,7 @@ var fs = require('fs');
 
 if (fs.existsSync('/log')){
      winston.add(winston.transports.File, { filename: '/log/app.log'});
-     console.log('set log file path: '+logFilePath);
+     console.log('set log file path ok!');
 }
 
 function respond(req, res, next) {
