@@ -1,4 +1,5 @@
 var restify = require('restify');
+var winston = require('winston');
 
 function respond(req, res, next) {
   res.send({
@@ -26,3 +27,5 @@ if(process.env.MONGO_PORT_27017_TCP_ADDR){
 }else{
   console.log('mongodb not found');
 }
+
+winston.info('Hello again distributed logs');
