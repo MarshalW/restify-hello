@@ -1,21 +1,12 @@
 var restify = require('restify');
 var winston = require('winston');
-var mkdirp = require('mkdirp');
+var fs = require('fs-extra');
 
 console.log("log: "+process.env.LOG_PATH);
-/*
 if(process.env.LOG_PATH){
-  var logPath=process.env.LOG_PATH+'/node';
-  mkdirp.sync(logPath);
-  winston.add(winston.transports.File, { filename: logPath+'/app.log' });
-  console.log('created log path and set log file');
-}*/
-
-
-mkdirp(process.env.LOG_PATH+'/node', function (err) {
-    if (err) console.error(err);
-    else console.log('create log dir: '+process.env.LOG_PATH+'/node, OK!');
-});
+  fs.mkdirsSync(process.env.LOG_PATH+'/node');
+  winston.add(winston.transports.File, { filename: process.env.LOG_PATH+'/node/app.log'});
+}
 
 function respond(req, res, next) {
   res.send({
