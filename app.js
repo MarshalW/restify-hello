@@ -11,9 +11,10 @@ if(process.env.LOG_PATH){
   console.log('created log path and set log file');
 }*/
 
+
 mkdirp(process.env.LOG_PATH+'/node', function (err) {
-    if (err) console.error(err)
-    else console.log('create log dir!')
+    if (err) console.error(err);
+    else console.log('create log dir: '+process.env.LOG_PATH+'/node, OK!');
 });
 
 function respond(req, res, next) {
