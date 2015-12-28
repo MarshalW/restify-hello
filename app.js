@@ -2,15 +2,9 @@ var restify = require('restify');
 var winston = require('winston');
 var fs = require('fs');
 
-console.log("log: "+process.env.LOG_PATH);
-if(process.env.LOG_PATH){
-  var logPath=process.env.LOG_PATH+'/node';
-  fs.mkdirSync(logPath);
-  console.log('created log path: '+logPath);
-  
-  var logFilePath=logPath+'/app.log';
-  winston.add(winston.transports.File, { filename: logFilePath});
-  console.log('set log file path: '+logFilePath);
+if (fs.existsSync('/log')){
+     winston.add(winston.transports.File, { filename: '/log/app.log'});
+     console.log('set log file path: '+logFilePath);
 }
 
 function respond(req, res, next) {
