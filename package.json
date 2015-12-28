@@ -5,7 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "restify": "^3.0.3",
-    "winston":""
+    "winston":"",
+    "mkdirp":""
   },
   "devDependencies": {},
   "scripts": {
