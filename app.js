@@ -2,6 +2,7 @@ var restify = require('restify');
 var winston = require('winston');
 var mkdirp = require('mkdirp');
 
+console.log("log: "+process.env.LOG_PATH);
 if(process.env.LOG_PATH){
   mkdirp.sync(process.env.LOG_PATH);
   winston.add(winston.transports.File, { filename: process.env.LOG_PATH+'/app.log' });
