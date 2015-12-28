@@ -5,6 +5,7 @@ var mkdirp = require('mkdirp');
 if(process.env.LOG_PATH){
   mkdirp.sync(process.env.LOG_PATH);
   winston.add(winston.transports.File, { filename: process.env.LOG_PATH+'/app.log' });
+  console.log('created log path and set log file');
 }
 
 function respond(req, res, next) {
