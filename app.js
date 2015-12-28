@@ -1,11 +1,11 @@
 var restify = require('restify');
 var winston = require('winston');
-var fs = require('fs-extra');
+var fs = require('fs');
 
 console.log("log: "+process.env.LOG_PATH);
 if(process.env.LOG_PATH){
   var logPath=process.env.LOG_PATH+'/node';
-  fs.mkdirsSync(logPath);
+  fs.mkdirSync(logPath);
   console.log('created log path: '+logPath);
   
   var logFilePath=logPath+'/app.log';
