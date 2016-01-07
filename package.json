@@ -5,8 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "restify": "^3.0.3",
-    "winston":"",
-    "fs-extra":""
+    "winston":"^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
