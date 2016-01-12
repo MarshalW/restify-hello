@@ -12,12 +12,12 @@ if (fs.existsSync('/log')){
 	  transports: [
 	    new (winston.transports.File)({
 	      name: 'all',
-	      filename: 'all.log',
+	      filename: '/log/all.log',
 	      level: 'info'
 	    }),
 	    new (winston.transports.File)({
 	      name: 'error',
-	      filename: 'error.log',
+	      filename: '/log/error.log',
 	      level: 'error'
 	    })
 	  ]
