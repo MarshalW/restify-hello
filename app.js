@@ -34,6 +34,6 @@ logger.info('restify server started.');
 
 // logger.error('test, it is not a real error');
 
-throw "error!";
+// throw "error!";
 
 
