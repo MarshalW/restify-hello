@@ -15,6 +15,11 @@ if (fs.existsSync('/log')){
 	      filename: '/log/all.log',
 	      level: 'info'
 	    }),
+	    new (winston.transports.Console)({
+	    	humanReadableUnhandledException:true,
+	    	handleExceptions: true,
+	    	leve:'error'
+	    }),
 	    new (winston.transports.File)({
 	      name: 'error',
 	      filename: '/log/error.log',
@@ -23,7 +28,7 @@ if (fs.existsSync('/log')){
 	  ]
 	});
 
-	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log',logstash:true}));
+	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log'}));
 }
 
 module.exports=logger;
