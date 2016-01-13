@@ -16,7 +16,6 @@ if (fs.existsSync('/log')){
 	      level: 'info'
 	    }),
 	    new (winston.transports.Console)({
-	    	humanReadableUnhandledException:true,
 	    	handleExceptions: true,
 	    	leve:'error'
 	    }),
