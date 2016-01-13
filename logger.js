@@ -23,7 +23,10 @@ if (fs.existsSync('/log')){
 	  ]
 	});
 
-	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log',humanReadableUnhandledException: true}));
+	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log',
+		humanReadableUnhandledException: true,
+		json: false
+	}));
 }
 
 module.exports=logger;
