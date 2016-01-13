@@ -40,6 +40,7 @@ if (fs.existsSync('/log')){
 		var trace = stackTrace.get();
 		meta.fileName=trace[1].getFileName();
 		meta.lineNumber=trace[1].getLineNumber();
+		console.log('>>>>>>on logging ..');
 	});
 }
 
