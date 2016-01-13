@@ -9,6 +9,7 @@ let logger = winston;
 
 // 如果有／log目录，说明在docker环境下
 if (fs.existsSync('/log')){
+	console.log('>>>>> use log file');
     logger=new (winston.Logger)({
 	  transports: [
 	    new (winston.transports.File)({
