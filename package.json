@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "moment": "^2.11.1",
     "restify": "^3.0.3",
     "stack-trace": "0.0.9",
     "winston": "^2.1.1"

@@ -2,14 +2,21 @@
 
 const fs = require('fs');
 const winston=require('winston');
+const moment = require('moment');
+const stackTrace = require('stack-trace');
 
-var stackTrace = require('stack-trace');
+const dateFormat='YYYY-MM-DD HH:mm:ss:SSS';
 
-let logger = winston;
+let logger = new (winston.Logger)({
+    transports: [
+      new winston.transports.Console({
+      	timestamp:function() {return moment().format(dateFormat); }
+      })
+    ]
+});
 
 // 如果有／log目录，说明在docker环境下
 if (fs.existsSync('/log')){
-	console.log('>>>>> use log file');
     logger=new (winston.Logger)({
 	  transports: [
 	    new (winston.transports.File)({
@@ -25,24 +32,47 @@ if (fs.existsSync('/log')){
 	  ]
 	});
 
-	// logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log'}));
-
-	// logger.on('error', function (err) { 
-	// 	console.log('发生了没有捕获的异常！');
-	// });
-
-	logger.on('logging', function (transport, level, msg, meta) {
-		// if(level==='error'){
-		// 	meta.error={
-		// 		fileName:
-		// 	}
-		// }
-		// var trace = stackTrace.get();
-		var trace = stackTrace.get();
-		meta.fileName=trace[1].getFileName();
-		meta.lineNumber=trace[1].getLineNumber();
-		console.log('>>>>>>on logging ..');
+	const crachLogger= new (winston.Logger)({
+    	transports: [
+	      	new (winston.transports.File)({
+		      name: 'error',
+		      filename: 'crach.log',
+		      level: 'error',
+		      handleExceptions: true,
+      		  timestamp:function() {return moment().format(dateFormat); },
+      		  humanReadableUnhandledException: true,
+      		  json: false      		
+		    })
+	    ]
 	});
 }
 
+// 临时的代码，后面用代理模式替代
+logger={
+	logger:logger,
+	info:function(msg){
+		this.logger.info(msg);
+	},
+	error:function(msg){
+		var cellSite=stackTrace.get()[1];
+		this.logger.error(msg,{filePath:cellSite.getFileName(),lineNumber:cellSite.getLineNumber()});
+	}
+}
+
 module.exports=logger;
+
+// logger.handleExceptions(new winston.transports.File({ filename: 'crash.log'}));
+
+// logger.on('error', function (err) { 
+// 	console.log('>>>>>>发生了没有捕获的异常！');
+// });
+// logger.emitErrs = false;
+
+// process.on('uncaughtException', function(err) {
+// 	var trace = stackTrace.parse(err);
+// 	logger.error('>>>>>>崩溃了: '+err.stack+'<<<');
+// 	process.nextTick(function(){
+// 		process.exit(1);
+// 	});
+// });
+
