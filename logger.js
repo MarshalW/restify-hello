@@ -40,7 +40,7 @@ if (fs.existsSync('/log')){
     	transports: [
 	      	new (winston.transports.File)({
 		      name: 'error',
-		      filename: 'crach.log',
+		      filename: '/log/crach.log',
 		      level: 'error',
 		      handleExceptions: true,
       		  timestamp:dateFormat,
