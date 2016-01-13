@@ -1,7 +1,9 @@
 'use strict';
 
 const restify = require('restify');
-const logger=require('./logger');
+const logger=require('./lib/logger');
+
+require('./lib/db.js');
 
 function respond(req, res, next) {
   res.send({
@@ -22,12 +24,6 @@ if(process.env.REDIS_PORT_6379_TCP_PORT && process.env.REDIS_DATABASE){
   logger.info('redis link ok.');
 }else{
   logger.info('redis not found.');
-}
-
-if(process.env.MONGO_PORT_27017_TCP_ADDR){
-  logger.info('mongodb link ok.');
-}else{
-  logger.info('mongodb not found');
 }
 
 logger.info('restify server started.');
