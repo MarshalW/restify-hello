@@ -5,12 +5,14 @@ const winston=require('winston');
 const moment = require('moment');
 const stackTrace = require('stack-trace');
 
-const dateFormat='YYYY-MM-DD HH:mm:ss:SSS';
+const dateFormat=function() {
+	return moment().format('YYYY-MM-DD HH:mm:ss:SSS');
+};	
 
 let logger = new (winston.Logger)({
     transports: [
       new winston.transports.Console({
-      	timestamp:function() {return moment().format(dateFormat); }
+      	timestamp:dateFormat
       })
     ]
 });
@@ -22,11 +24,13 @@ if (fs.existsSync('/log')){
 	    new (winston.transports.File)({
 	      name: 'all',
 	      filename: '/log/all.log',
+	      timestamp:dateFormat,
 	      level: 'info'
 	    }),
 	    new (winston.transports.File)({
 	      name: 'error',
 	      filename: '/log/error.log',
+	      timestamp:dateFormat,
 	      level: 'error'
 	    })
 	  ]
@@ -39,7 +43,7 @@ if (fs.existsSync('/log')){
 		      filename: 'crach.log',
 		      level: 'error',
 		      handleExceptions: true,
-      		  timestamp:function() {return moment().format(dateFormat); },
+      		  timestamp:dateFormat,
       		  humanReadableUnhandledException: true,
       		  json: false      		
 		    })
