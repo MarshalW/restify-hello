@@ -21,17 +21,17 @@ if (fs.existsSync('/log')){
 	//     })
 	//   ]
 	// });
-	winston.add(winston.transports.File, {
-	    filename: '/log/all.log',
-	    level: 'info'
-	});
+	// winston.add(winston.transports.File, {
+	//     filename: '/log/all.log',
+	//     level: 'info'
+	// });
 
-	winston.add(winston.transports.File, {
-	    filename: '/log/error.log',
-	    level: 'error'
-	});
+	// winston.add(winston.transports.File, {
+	//     filename: '/log/error.log',
+	//     level: 'error'
+	// });
 
-	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log'}));
+	// logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log'}));
 }
 
 module.exports=logger;
