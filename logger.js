@@ -69,7 +69,8 @@ if (fs.existsSync('/log')){
 
 	logger.handleExceptions(new winston.transports.File({ filename: '/log/crash.log'}));
 
-	logger=expandErrors(logger);
+	// logger=expandErrors(logger);
 }
 
-module.exports=logger;
+module.exports=expandErrors(logger);
+// module.exports=logger;
