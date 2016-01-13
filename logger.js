@@ -4,6 +4,7 @@ const fs = require('fs');
 const winston=require('winston');
 const moment = require('moment');
 const stackTrace = require('stack-trace');
+const _=require('underscore');
 
 const dateFormat=function() {
 	return moment().format('YYYY-MM-DD HH:mm:ss:SSS');
@@ -65,18 +66,8 @@ logger={
 
 module.exports=logger;
 
-// logger.handleExceptions(new winston.transports.File({ filename: 'crash.log'}));
-
-// logger.on('error', function (err) { 
-// 	console.log('>>>>>>发生了没有捕获的异常！');
-// });
-// logger.emitErrs = false;
-
-// process.on('uncaughtException', function(err) {
-// 	var trace = stackTrace.parse(err);
-// 	logger.error('>>>>>>崩溃了: '+err.stack+'<<<');
-// 	process.nextTick(function(){
-// 		process.exit(1);
-// 	});
-// });
+var hello = function(name) { return "hello: " + name; };
+hello = _.wrap(hello, function(func) {
+  return "before, " + func("moe") + ", after";
+});
 

@@ -32,9 +32,8 @@ if(process.env.MONGO_PORT_27017_TCP_ADDR){
 
 logger.info('restify server started.');
 
-// logger.error('>>>test, it is not a real error');
+logger.error('>>>test, it is not a real error');
 
 throw new Error('error!');
-// throw 'error!!!';
 
 
