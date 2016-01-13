@@ -52,22 +52,12 @@ if (fs.existsSync('/log')){
 	});
 }
 
-// 临时的代码，后面用代理模式替代
-logger={
-	logger:logger,
-	info:function(msg){
-		this.logger.info(msg);
-	},
-	error:function(msg){
-		var cellSite=stackTrace.get()[1];
-		this.logger.error(msg,{filePath:cellSite.getFileName(),lineNumber:cellSite.getLineNumber()});
-	}
+// 代理logger.error方法，加入文件路径和行号信息
+var originalMethod=logger.error;
+logger.error=function(){
+	var cellSite=stackTrace.get()[1];
+	originalMethod.apply(logger,[arguments[0]+'\n',{filePath:cellSite.getFileName(),lineNumber:cellSite.getLineNumber()}]);
 }
 
 module.exports=logger;
-
-var hello = function(name) { return "hello: " + name; };
-hello = _.wrap(hello, function(func) {
-  return "before, " + func("moe") + ", after";
-});
 
