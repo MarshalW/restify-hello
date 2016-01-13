@@ -17,7 +17,7 @@ if (fs.existsSync('/log')){
 	      filename: '/log/all.log',
 	      level: 'info'
 	    }),
-	    logger.transports.Console,
+	    console,
 	    new (winston.transports.File)({
 	      name: 'error',
 	      filename: '/log/error.log',
